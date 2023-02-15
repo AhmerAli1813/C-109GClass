@@ -1,0 +1,15 @@
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\obj\Debug\CodeFirstCrud.frmStudentinfo.resources
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\obj\Debug\CodeFirstCrud.Properties.Resources.resources
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\obj\Debug\CodeFirstCrud.csproj.GenerateResource.cache
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\obj\Debug\CodeFirstCrud.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\bin\Debug\CodeFirstCrud.exe.config
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\bin\Debug\CodeFirstCrud.exe
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\bin\Debug\CodeFirstCrud.pdb
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\bin\Debug\EntityFramework.dll
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\bin\Debug\EntityFramework.xml
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\obj\Debug\CodeFirstCrud.csproj.CopyComplete
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\obj\Debug\CodeFirstCrud.exe
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\obj\Debug\CodeFirstCrud.pdb
+C:\Users\admin\source\repos\CodeFirstCrud\CodeFirstCrud\obj\Debug\CodeFirstCrud.csproj.AssemblyReference.cache

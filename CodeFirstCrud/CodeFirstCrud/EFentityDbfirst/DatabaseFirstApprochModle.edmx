@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="makdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="book_name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="semester_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="256" />
+          <Property Name="salary" Type="int" />
+          <Property Name="date_of_birth" Type="date" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="programs">
+          <Key>
+            <PropertyRef Name="program_id" />
+          </Key>
+          <Property Name="program_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="program_name" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="semesters">
+          <Key>
+            <PropertyRef Name="semester_id" />
+          </Key>
+          <Property Name="semester_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="semester_name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="program_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'makdb.dbo.test_total' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="test_total">
+          <Property Name="test_id" Type="int" />
+          <Property Name="total" Type="int" />
+        </EntityType>-->
+        <EntityType Name="tests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sub1" Type="int" />
+          <Property Name="sub2" Type="int" />
+          <Property Name="sub3" Type="int" />
+        </EntityType>
+        <Association Name="FK__books__semester___2B3F6F97">
+          <End Role="semesters" Type="Self.semesters" Multiplicity="1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semesters">
+              <PropertyRef Name="semester_id" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="semester_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__semesters__progr__276EDEB3">
+          <End Role="programs" Type="Self.programs" Multiplicity="1" />
+          <End Role="semesters" Type="Self.semesters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programs">
+              <PropertyRef Name="program_id" />
+            </Principal>
+            <Dependent Role="semesters">
+              <PropertyRef Name="program_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'makdb.dbo.test_total' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__test_tota__test___71D1E811" />-->
+        <EntityContainer Name="makdbModelStoreContainer">
+          <EntitySet Name="books" EntityType="Self.books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="programs" EntityType="Self.programs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="semesters" EntityType="Self.semesters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tests" EntityType="Self.tests" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__books__semester___2B3F6F97" Association="Self.FK__books__semester___2B3F6F97">
+            <End Role="semesters" EntitySet="semesters" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__semesters__progr__276EDEB3" Association="Self.FK__semesters__progr__276EDEB3">
+            <End Role="programs" EntitySet="programs" />
+            <End Role="semesters" EntitySet="semesters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="makdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="book_id" />
+          </Key>
+          <Property Name="book_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="book_name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="semester_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="semester" Relationship="Self.FK__books__semester___2B3F6F97" FromRole="books" ToRole="semesters" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="salary" Type="Int32" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="program">
+          <Key>
+            <PropertyRef Name="program_id" />
+          </Key>
+          <Property Name="program_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="program_name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="semesters" Relationship="Self.FK__semesters__progr__276EDEB3" FromRole="programs" ToRole="semesters" />
+        </EntityType>
+        <EntityType Name="semester">
+          <Key>
+            <PropertyRef Name="semester_id" />
+          </Key>
+          <Property Name="semester_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="semester_name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="program_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="books" Relationship="Self.FK__books__semester___2B3F6F97" FromRole="semesters" ToRole="books" />
+          <NavigationProperty Name="program" Relationship="Self.FK__semesters__progr__276EDEB3" FromRole="semesters" ToRole="programs" />
+        </EntityType>
+        <EntityType Name="test">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sub1" Type="Int32" />
+          <Property Name="sub2" Type="Int32" />
+          <Property Name="sub3" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__books__semester___2B3F6F97">
+          <End Role="semesters" Type="Self.semester" Multiplicity="1" />
+          <End Role="books" Type="Self.book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semesters">
+              <PropertyRef Name="semester_id" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="semester_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__semesters__progr__276EDEB3">
+          <End Role="programs" Type="Self.program" Multiplicity="1" />
+          <End Role="semesters" Type="Self.semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programs">
+              <PropertyRef Name="program_id" />
+            </Principal>
+            <Dependent Role="semesters">
+              <PropertyRef Name="program_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="makdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="books" EntityType="Self.book" />
+          <EntitySet Name="employees" EntityType="Self.employee" />
+          <EntitySet Name="programs" EntityType="Self.program" />
+          <EntitySet Name="semesters" EntityType="Self.semester" />
+          <EntitySet Name="tests" EntityType="Self.test" />
+          <AssociationSet Name="FK__books__semester___2B3F6F97" Association="Self.FK__books__semester___2B3F6F97">
+            <End Role="semesters" EntitySet="semesters" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__semesters__progr__276EDEB3" Association="Self.FK__semesters__progr__276EDEB3">
+            <End Role="programs" EntitySet="programs" />
+            <End Role="semesters" EntitySet="semesters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="makdbModelStoreContainer" CdmEntityContainer="makdbEntities">
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="makdbModel.book">
+              <MappingFragment StoreEntitySet="books">
+                <ScalarProperty Name="book_id" ColumnName="book_id" />
+                <ScalarProperty Name="book_name" ColumnName="book_name" />
+                <ScalarProperty Name="semester_id" ColumnName="semester_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="makdbModel.employee">
+              <MappingFragment StoreEntitySet="employees">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="programs">
+            <EntityTypeMapping TypeName="makdbModel.program">
+              <MappingFragment StoreEntitySet="programs">
+                <ScalarProperty Name="program_id" ColumnName="program_id" />
+                <ScalarProperty Name="program_name" ColumnName="program_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="semesters">
+            <EntityTypeMapping TypeName="makdbModel.semester">
+              <MappingFragment StoreEntitySet="semesters">
+                <ScalarProperty Name="semester_id" ColumnName="semester_id" />
+                <ScalarProperty Name="semester_name" ColumnName="semester_name" />
+                <ScalarProperty Name="program_id" ColumnName="program_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tests">
+            <EntityTypeMapping TypeName="makdbModel.test">
+              <MappingFragment StoreEntitySet="tests">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sub1" ColumnName="sub1" />
+                <ScalarProperty Name="sub2" ColumnName="sub2" />
+                <ScalarProperty Name="sub3" ColumnName="sub3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
